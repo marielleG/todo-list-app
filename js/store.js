@@ -81,7 +81,7 @@
 		callback = callback || function () {};
 
 		// Generate an ID
-	    var newId = ""; 
+	    var newId = "";
 	    var charset = "0123456789";
 
         for (var i = 0; i < 6; i++) {
@@ -105,7 +105,7 @@
 
     		// Assign an ID
 			updateData.id = parseInt(newId);
-    
+
 
 			todos.push(updateData);
 			localStorage[this._dbName] = JSON.stringify(data);
@@ -123,14 +123,11 @@
 		var data = JSON.parse(localStorage[this._dbName]);
 		var todos = data.todos;
 		var todoId;
-		
+
 		for (var i = 0; i < todos.length; i++) {
 			if (todos[i].id == id) {
 				todoId = todos[i].id;
 			}
-		}
-
-		for (var i = 0; i < todos.length; i++) {
 			if (todos[i].id == todoId) {
 				todos.splice(i, 1);
 			}

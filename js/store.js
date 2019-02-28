@@ -80,14 +80,6 @@
 
 		callback = callback || function () {};
 
-		// Generate an ID
-	    var newId = "";
-	    var charset = "0123456789";
-
-        for (var i = 0; i < 6; i++) {
-     		newId += charset.charAt(Math.floor(Math.random() * charset.length));
-		}
-
 		// If an ID was actually given, find the item and update each property
 		if (id) {
 			for (var i = 0; i < todos.length; i++) {
@@ -102,10 +94,28 @@
 			localStorage[this._dbName] = JSON.stringify(data);
 			callback.call(this, todos);
 		} else {
+			// Generate an ID
+			var newId = "";
+			var charset = "0123456789";
+			var isUnique = false;
 
-    		// Assign an ID
+			while (isUnique == false) {
+				for (var i = 0; i < 6; i++) {
+					newId += charset.charAt(Math.floor(Math.random() * charset.length));
+				}
+				isUnique = true;
+				for (var i = 0; i < todos.length; i++) {
+					if (todos[i].id === newId) {
+						isUnique = false;
+						break;
+					}
+				}
+			}
+		}
+
+
+			// Assign an ID
 			updateData.id = parseInt(newId);
-
 
 			todos.push(updateData);
 			localStorage[this._dbName] = JSON.stringify(data);

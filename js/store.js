@@ -120,7 +120,6 @@
 			todos.push(updateData);
 			localStorage[this._dbName] = JSON.stringify(data);
 			callback.call(this, [updateData]);
-		}
 	};
 
 	/**
